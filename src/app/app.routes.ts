@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppRoute } from './core/constants/const';
+import {AuthGuard} from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,7 @@ export const routes: Routes = [
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
-    path: AppRoute.OFFER,
+    path: `${AppRoute.OFFER}/:id`,
     title: 'Offer',
     loadComponent: () =>
       import('./pages/offer/offer.component').then((m) => m.OfferComponent),
@@ -23,6 +24,7 @@ export const routes: Routes = [
   {
     path: AppRoute.FAVORITES,
     title: 'Favorites',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/favorites/favorites.component').then(
         (m) => m.FavoritesComponent,

@@ -8,8 +8,6 @@ import {AUTH_TOKEN_KEY_NAME} from '../constants/const';
   }
 )
 export class AuthService {
-  private auth = false;
-
   getToken(): Token | null {
     return localStorage.getItem(AUTH_TOKEN_KEY_NAME);
   }
