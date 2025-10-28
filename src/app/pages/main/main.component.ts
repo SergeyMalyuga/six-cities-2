@@ -17,6 +17,7 @@ export class MainComponent implements OnInit, OnDestroy {
   private store: Store<AppState> = inject(Store<AppState>);
   private destroySubject: Subject<void> = new Subject<void>();
   public offers: WritableSignal<OfferPreview[]> = signal<OfferPreview[]>([]);
+  public activeCard: WritableSignal<OfferPreview | null> = signal<OfferPreview | null>(null);
 
   public ngOnInit(): void {
     this.store.select(selectOffers).pipe(takeUntil(this.destroySubject)).subscribe(offers => this.offers.set(offers));
