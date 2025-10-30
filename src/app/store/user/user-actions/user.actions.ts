@@ -9,3 +9,7 @@ export const checkAuthSuccess = createAction(
 export const checkAuthFailure = createAction(
   '[App component] Check Auth Failure',
 );
+
+export const login = createAction('[App component] Login', props<{ email: string, password: string }>());
+export const loginSuccess = createAction('[Login component] Login Success', props<{ user: User }>());
+export const loginFailure = createAction('[Login component] Login Failure');
