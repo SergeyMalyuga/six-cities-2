@@ -1,14 +1,12 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Offer, OfferPreview} from '../models/offers';
-import {Observable} from 'rxjs';
-import {APIRoute, BASE_URL} from '../constants/const';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Offer, OfferPreview } from '../models/offers';
+import { Observable } from 'rxjs';
+import { APIRoute, BASE_URL } from '../constants/const';
 
-@Injectable(
-  {
-    providedIn: 'root',
-  }
-)
+@Injectable({
+  providedIn: 'root',
+})
 export class OfferService {
   private http: HttpClient = inject(HttpClient);
 
@@ -17,10 +15,12 @@ export class OfferService {
   }
 
   public getOffer(offerId: string): Observable<Offer> {
-    return this.http.get<Offer>(`${BASE_URL}/${APIRoute.OFFERS}/${offerId}`)
+    return this.http.get<Offer>(`${BASE_URL}/${APIRoute.OFFERS}/${offerId}`);
   }
 
   public getNearbyOffers(offerId: string): Observable<OfferPreview[]> {
-    return this.http.get<OfferPreview[]>(`${BASE_URL}/${APIRoute.OFFERS}/${offerId}/nearby`);
+    return this.http.get<OfferPreview[]>(
+      `${BASE_URL}/${APIRoute.OFFERS}/${offerId}/nearby`,
+    );
   }
 }

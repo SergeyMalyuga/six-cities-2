@@ -1,8 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {Store} from '@ngrx/store';
-import {AppState} from './core/models/app.state';
-import {loadOffers} from './store/offer/actions/offer.actions';
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from './core/models/app.state';
+import { loadOffers } from './store/offer/actions/offer.actions';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import {loadOffers} from './store/offer/actions/offer.actions';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  private store: Store<AppState> = inject(Store<AppState>)
+  private store: Store<AppState> = inject(Store<AppState>);
 
   ngOnInit(): void {
     this.store.dispatch(loadOffers());
