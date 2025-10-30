@@ -22,7 +22,7 @@ export class CommentService {
     rating: number,
   ): Observable<Comment> {
     return this.http.post<Comment>(
-      `/${BASE_URL}/${APIRoute.COMMENTS}/${offerId}`,
+      `${BASE_URL}/${APIRoute.COMMENTS}/${offerId}`,
       { comment, rating },
     );
   }

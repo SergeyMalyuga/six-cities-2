@@ -17,6 +17,7 @@ import { Comment } from '../../core/models/comments';
 import { CommentService } from '../../core/services/comment.service';
 import { CommentComponent } from '../../features/review/comment.component';
 import { CommentFormComponent } from '../../features/comment-form/comment-form.component';
+import {SortCommentByDatePipe} from './pipes/sort-comment-by-date.pipe';
 
 @Component({
   selector: 'app-offer',
@@ -26,6 +27,7 @@ import { CommentFormComponent } from '../../features/comment-form/comment-form.c
     CapitalizePipe,
     CommentComponent,
     CommentFormComponent,
+    SortCommentByDatePipe,
   ],
 })
 export class OfferComponent implements OnDestroy {

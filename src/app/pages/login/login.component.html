@@ -21,10 +21,11 @@
     <div class="page__login-container container">
       <section class="login">
         <h1 class="login__title">Sign in</h1>
-        <form class="login__form form" action="#" method="post">
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="login__form form" action="#" method="post">
           <div class="login__input-wrapper form__input-wrapper">
             <label for="email" class="visually-hidden">E-mail</label>
             <input
+              formControlName="email"
               id="email"
               class="login__input form__input"
               type="email"
@@ -36,6 +37,7 @@
           <div class="login__input-wrapper form__input-wrapper">
             <label for="password" class="visually-hidden">Password</label>
             <input
+              formControlName="password"
               id="password"
               class="login__input form__input"
               type="password"
@@ -44,7 +46,7 @@
               required=""
             />
           </div>
-          <button class="login__submit form__submit button" type="submit">
+          <button [disabled]="loginForm.invalid && loginForm.touched" class="login__submit form__submit button" type="submit">
             Sign in
           </button>
         </form>

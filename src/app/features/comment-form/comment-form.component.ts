@@ -14,9 +14,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommentService } from '../../core/services/comment.service';
-import { Comment } from '../../core/models/comments';
-import { Subject, takeUntil } from 'rxjs';
+import {CommentService} from '../../core/services/comment.service';
+import {Comment} from '../../core/models/comments';
+import {Subject, takeUntil} from 'rxjs';
 
 @Component({
   selector: 'app-comment-form',
@@ -25,7 +25,7 @@ import { Subject, takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentFormComponent implements OnDestroy {
-  @Input({ required: true }) offerId!: string | null;
+  @Input({required: true}) offerId!: string | null;
   @Output() public commentAdded: EventEmitter<Comment> =
     new EventEmitter<Comment>();
 
@@ -40,9 +40,9 @@ export class CommentFormComponent implements OnDestroy {
 
   public onSubmit() {
     if (this.offerId) {
-      const { rating, comment } = this.commentForm.value;
+      const {rating, comment} = this.commentForm.value;
       this.commentService
-        .postComment(this.offerId, comment, rating)
+        .postComment(this.offerId, comment, Number(rating))
         .pipe(takeUntil(this.destroySubject))
         .subscribe({
           next: (comment: Comment) => this.commentAdded.emit(comment),

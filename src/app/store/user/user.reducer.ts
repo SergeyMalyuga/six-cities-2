@@ -20,8 +20,8 @@ export const userReducer = createReducer(
   on(checkAuth, state => ({
     ...state, authorizationStatus: AuthorizationStatus.UN_AUTH,
   })),
-  on(checkAuthSuccess, state => ({
-    ...state, authorizationStatus: AuthorizationStatus.AUTH
+  on(checkAuthSuccess, (state, {user}) => ({
+    ...state, user, authorizationStatus: AuthorizationStatus.AUTH
   })),
   on(checkAuthFailure, state => ({
     ...state, authorizationStatus: AuthorizationStatus.UN_AUTH
