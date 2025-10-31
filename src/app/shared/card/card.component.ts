@@ -3,10 +3,11 @@ import { OfferPreview } from '../../core/models/offers';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { RouterLink } from '@angular/router';
 import { AppRoute } from '../../core/constants/const';
+import {ToggleFavoriteDirective} from '../directives/toggle-favorite.directive';
 
 @Component({
   selector: 'app-card',
-  imports: [CapitalizePipe, RouterLink],
+  imports: [CapitalizePipe, RouterLink, ToggleFavoriteDirective],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
