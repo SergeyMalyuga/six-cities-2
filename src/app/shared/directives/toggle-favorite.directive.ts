@@ -8,7 +8,7 @@ export class ToggleFavoriteDirective {
   private elementRef: ElementRef = inject(ElementRef);
 
   @HostListener('click')
-  onClick() {
+  onToggleFavorite() {
     const target = this.elementRef.nativeElement as HTMLElement;
     target.classList.toggle('place-card__bookmark-button--active');
     this.favoriteToggled.emit();

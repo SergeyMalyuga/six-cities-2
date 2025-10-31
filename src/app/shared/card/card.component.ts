@@ -16,4 +16,8 @@ export class CardComponent {
   @Input({ required: true }) offer!: OfferPreview;
   public readonly Math = Math;
   public readonly AppRoute = AppRoute;
+
+  onFavoriteToggled() {
+    return null;
+  }
 }
