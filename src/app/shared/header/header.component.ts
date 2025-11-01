@@ -1,14 +1,35 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { AppRoute } from '../../core/constants/const';
+import {ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
+import {RouterLink} from '@angular/router';
+import {AppRoute, AuthorizationStatus} from '../../core/constants/const';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../core/models/app.state';
+import {selectAuthStatus, selectUserEmail} from '../../store/app/selectors/app.selectors';
+import {Subject, takeUntil} from 'rxjs';
 
 @Component({
   selector: 'app-header',
   imports: [RouterLink],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
-  protected readonly AppRoute = AppRoute;
+export class HeaderComponent implements OnInit, OnDestroy {
+  private store: Store<AppState> = inject(Store);
+  private destroySubject: Subject<void> = new Subject<void>();
+  public authStatus: WritableSignal<AuthorizationStatus> = signal<AuthorizationStatus>(AuthorizationStatus.UN_AUTH);
+  public email: WritableSignal<string | null> = signal<string | null>(null);
+  public readonly AppRoute = AppRoute;
+
+  ngOnInit(): void {
+    this.store.select(selectAuthStatus).pipe(takeUntil(this.destroySubject)).subscribe(authStatus => this.authStatus.set(authStatus));
+    this.store.select(selectUserEmail).pipe(takeUntil(this.destroySubject)).subscribe((email => {if(email) {
+      this.email.set(email)
+    }}));
+  }
+
+  ngOnDestroy(): void {
+    this.destroySubject.next();
+    this.destroySubject.complete();
+  }
+
+  protected readonly AuthorizationStatus = AuthorizationStatus;
 }

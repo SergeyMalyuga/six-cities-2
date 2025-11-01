@@ -35,6 +35,7 @@ export class LoginComponent implements OnDestroy {
       this.store.select(selectAuthStatus).pipe(filter((status) =>
         status === AuthorizationStatus.AUTH), take(1), takeUntil(this.destroySubject))
         .subscribe(() => {
+          console.log('login successfully');
           this.store.dispatch(loadOffers());
           this.store.dispatch(loadFavorites())
           this.loginForm.reset();
