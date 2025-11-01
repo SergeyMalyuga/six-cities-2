@@ -15,5 +15,8 @@ export const changeFavoriteFailure = createAction('[Card component] change Favor
 
 
 export const loadFavorites = createAction('[Card component] load Favorites');
-export const loadFavoritesSuccess = createAction('[Card component] load Favorites Success');
+export const loadFavoritesSuccess = createAction('[Card component] load Favorites Success',
+  props<{
+    favorites: OfferPreview[]
+  }>());
 export const loadFavoritesFailure = createAction('[Card component] load Favorites Failure');
